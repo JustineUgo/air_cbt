@@ -1,0 +1,35 @@
+#header, #head{
+    background: #343a40;
+    color: white;
+}
+
+h1{
+    color: black;
+}
+
+#branding h1{
+    color: white;
+}
+
+.module h2, .module caption, .inline-group h2{
+    background: #fb3;
+}
+
+a:link, a:visited{
+    color: black;
+}
+
+
+div.breadcrumbs{
+    background: #fb3;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button{
+    background: #fb3;
+}
+
+.button.default, input[type=submit].default, .submit-row input.default {
+    background: #fb3;
+}
+
+

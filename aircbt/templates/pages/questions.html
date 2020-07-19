@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}| Questions{% endblock  %}
+{% block content %}
+
+<!-- Begin your project here-->
+
+    
+
+    <!--Main Navigation-->
+    <header>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark blue scrolling-navbar">
+        <a class="navbar-brand" href="#"><img src="/static/img/logo.jpg" class="img-circle"  width="40" height="40"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            <a class="nav-link" href="{% url 'dashboard' %}">Air Force War College <span class="sr-only">(current)</span></a>
+            </li>
+            
+        </ul>
+        <ul class="navbar-nav nav-flex-icons">
+            
+
+            <li class="nav-item">
+            <a a href="#" class="nav-link">Welcome, Admin</a>
+            </li>
+            <li class="nav-item">
+            <a href="{% url 'logout' %}" class="nav-link">Log Out</a>
+            </li>
+        </ul>
+        </div>
+    </nav>
+
+    </header>
+    <!--Main Navigation-->
+
+    
+    <section id="breadcrumb">
+        <div class="container">
+        <ol class="breadcrumb">
+            <li class="active">Dashboard</li>
+        </ol>
+        </div>
+    </section>
+    
+    <section id= "main">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <a href="{% url 'dashboard' %}" class="list-group-item active">Dashboard</a>
+                        <a href="{% url 'create_exam' %}" class="list-group-item ">Create Exam</a>
+                        <a href="{% url 'enroll' %}" class="list-group-item ">Enroll</a>
+                        <a href="{% url 'enrolled' %}" class="list-group-item ">View Students</a>
+                        <a href="{% url 'submitted' %}" class="list-group-item "> Responses</a>
+                    </div>
+                    
+                </div>
+                <div class="col-md-3">
+                {% if questions %}
+                    <ul class="list-group">
+                    {% for question in questions %}
+                        <li class="list-group-item justify-content-between align-items-center d-flex">
+                            <a>{{question.question_text | truncatechars:25}}<span>...</span></a><span class="badge badge-primary badge-pill">Obj</span>
+                        </li>
+                        
+                    {% endfor %} 
+                    </ul>
+                {% else %}
+                    <p>No Questions Available<br>Add a Question type, with the form</p>
+                {% endif %}
+                </div>
+
+                <!--Shown OBJ Form-->
+                <div id="obj" class="col-md-6">
+
+                    <!--Question Type-->
+                    <div class="row align-content-center align-items-center text-center">
+                        <button class="btn btn-primary btn-sm" onclick="showObj()">OBJ</button>
+                        <button class="btn btn-outline-primary btn-sm" onclick="showEssay()">ESSAY</button>
+                    </div>
+
+                    <!-- form signin -->
+                    <form class="form col-md-10 border border-light p-5" action="{% url 'create_question' course%}" method="POST">{% csrf_token %}
+
+                        <p class="text-center h6 mb-4">Question Form</p>
+                        
+                        <!-- Question -->
+                        <div class="form-group">
+                            <label for="question">Question</label>
+                            <textarea type="text" class="form-control" id="question" name="question_text" placeholder="Question" rows="6"></textarea>
+                        </div>
+
+                        <!--question type & name-->
+                        <input type="hidden" name='question_type' value="objective"></input>
+                        <input type="hidden" name='question_name' value="{{course}}"></input>
+
+                        <!-- Options -->
+                        <div class="form-check-inline">
+                            <input type="radio" name="correct" value="0"></input>
+                            <input type="text" class="form-control mb-4" id="option_one" name="option_one" placeholder="Option ">
+                        </div>
+
+                        <div class="form-check-inline">
+                            <input type="radio" name="correct" value="1"></input>
+                            <input type="text" class="form-control mb-4" id="option_two" name="option_two" placeholder="Option ">
+                        </div>
+
+                        <div class="form-check-inline">
+                            <input type="radio" name="correct" value="2"></input>
+                            <input type="text" class="form-control mb-4" id="option_three" name="option_three" placeholder="Option ">
+                        </div>
+
+                        <div class="form-check-inline">
+                            <input type="radio" name="correct" value="3"></input>
+                            <input type="text" class="form-control mb-4" id="option_four" name="option_four" placeholder="Option ">
+                        </div>
+
+
+                        <!-- Submit  button -->
+                        <button class="btn btn-info btn-block mb-4" type="submit">Submit</button>
+
+                        
+
+                    </form>
+                    <!-- form signin -->
+
+                    
+                </div>
+                <!--shown Form-->
+
+
+                <!--hidden ESSAY Form-->
+                <div id="essay" class=" col-md-6">
+
+                    <!--Question Type-->
+                    <div class="row align-content-center align-items-center text-center">
+                        <button class="btn btn-primary btn-sm" onclick="showObj()">OBJ</button>
+                        <button class="btn btn-outline-primary btn-sm" onclick="showEssay()">ESSAY</button>
+                    </div>
+
+                    <!-- form signin -->
+                    <form class="form col-md-10 border border-light p-5" action="{% url 'create_question' course%}" method="POST">{% csrf_token %}
+
+                        <p class="text-center h6 mb-4">Question Form</p>
+                        
+                        <!-- Question -->
+                        <div class="form-group">
+                            <label for="question">Question</label>
+                            <textarea type="text" class="form-control" id="question" name="question_text" placeholder="Question" rows="6"></textarea>
+                        </div>
+
+                        <!--question type & name-->
+                        <input type="hidden" name='question_type' value="essay"></input>
+                        <input type="hidden" name='question_name' value="{{course}}"></input>
+
+                        
+                        <!-- Submit  button -->
+                        <button class="btn btn-info btn-block mb-4" type="submit">Submit</button>
+
+                        
+
+                    </form>
+                    <!-- form signin -->
+
+                    
+                </div>
+                <!--hidden form-->
+
+            </div>
+        </div>
+    </section>
+<!-- End your project here-->
+
+{% endblock  %}
+
+

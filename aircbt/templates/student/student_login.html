@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}| Login{% endblock  %}
+{% block content %}
+
+<!-- Begin your project here-->
+
+    
+    <div class="container">
+        
+    
+        <div class="align-content-center">
+        
+            <!-- form register -->
+            <form class="landing form col-md-10 border border-light p-5" action="{% url 'home' %}" method="POST">{% csrf_token %}
+
+                <div class="jumbotron row text-center">
+                    <img src="/static/img/logo.jpg" class="img-circle"  width="100" height="100">
+                    <p  class="h4 text-white text-center">Examination Portal   |   SIGN IN</p>
+                </div>
+                
+                <!-- username -->
+                <div class="form-group">
+                    <label for="student_name">Fullname</label>
+                    <input type="text" class="form-control" id="student_name" name="student_name">
+                </div>
+
+                <!-- code -->
+                <div class="form-group">
+                    <label for="student_code">Student Code</label>
+                    <input type="text" class="form-control" id="student_code" name="student_code">
+                </div>
+
+                <!-- email -->
+                <div class="form-group">
+                    <label for="student_email">Student Email</label>
+                    <input type="email" class="form-control" id="student_email" name="student_email">
+                </div>
+                
+                <!-- exams -->
+                {% if exams %}
+                <div class="form-group">
+                    <label for="exam_name">Student Rank</label>
+                    <select name="exam_name" class="form-control" id="exam_name" >
+                    {% for exam in exams %}
+                        <option>{{exam.exam_name}}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                {% endif %}
+
+                <!-- Sign In button -->
+                <button class="btn btn-info btn-block mb-4" type="submit">Register</button>
+                
+                
+                
+
+            </form>
+            <!-- form register -->
+        </div>
+
+    
+    </div>
+  <!-- End your project here-->
+
+
+
+{% endblock  %}
+

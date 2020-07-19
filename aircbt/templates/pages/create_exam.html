@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}| Exams{% endblock  %}
+
+{% block content %}
+
+<!-- Begin your project here-->
+
+    
+  <!-- End your project here-->
+
+    <!--Main Navigation-->
+    <header>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark blue scrolling-navbar">
+        <a class="navbar-brand" href="#"><img src="/static/img/logo.jpg" class="img-circle"  width="40" height="40"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            <a class="nav-link" href="{% url 'dashboard' %}">Air Force War College <span class="sr-only">(current)</span></a>
+            </li>
+            
+        </ul>
+        <ul class="navbar-nav nav-flex-icons">
+            
+
+            <li class="nav-item">
+            <a a href="#" class="nav-link">Welcome, Admin</a>
+            </li>
+            <li class="nav-item">
+            <a href="{% url 'logout' %}" class="nav-link">Log Out</a>
+            </li>
+        </ul>
+        </div>
+    </nav>
+
+    </header>
+    <!--Main Navigation-->
+
+    
+    <section id="breadcrumb">
+        <div class="container">
+        <ol class="breadcrumb">
+            <li class="active">Dashboard</li>
+        </ol>
+        </div>
+    </section>
+    
+    <section id= "main">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <a href=" {% url 'dashboard' %} " class="list-group-item ">Dashboard</a>
+                        <a href="#" class="list-group-item active">Create Exam</a>
+                        <a href="{% url 'enroll' %}" class="list-group-item ">Enroll</a>
+                        <a href="{% url 'enrolled' %}" class="list-group-item ">View Students</a>
+                        <a href="{% url 'submitted' %}" class="list-group-item "> Responses</a>
+                    </div>
+                    
+                </div>
+                <div class="col-md-9">
+                    <!--Course[Exam] form-->
+                    <form class="form col-md-10 border border-light p-5" action="{% url 'create_exam' %}" method="POST">{% csrf_token %}
+
+                        <p class="text-center h6 mb-4">Exam Form</p>
+                        
+                        <!-- exam_name -->
+                        <div class="form-group">
+                            <label for="exam_name">Name of Exam</label>
+                            <input type="text" class="form-control" id="exam_name" name="exam_name" placeholder="Exam Name">
+                        </div>
+
+                        <!-- exam_code -->
+                        <label for="exam_code">Exam Code</label>
+                        <input type="text" class="form-control mb-4" id="exam_code" name="exam_code" placeholder="Exam Code">
+
+                        
+
+                        <!-- Sign in button -->
+                        <button class="btn btn-info btn-block mb-4" type="submit">Submit</button>
+
+                    </form>
+                    <!--End of Course[Exam] form-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock  %}

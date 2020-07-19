@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}| Submitted{% endblock  %}
+{% block content %}
+
+<!-- End your project here-->
+
+    <!--Main Navigation-->
+    <header>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark blue scrolling-navbar">
+        <a class="navbar-brand" href="#"><img src="/static/img/logo.jpg" class="img-circle"  width="40" height="40"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            <a class="nav-link" href="{% url 'dashboard' %}">Air Force War College <span class="sr-only">(current)</span></a>
+            </li>
+            
+        </ul>
+        <ul class="navbar-nav nav-flex-icons">
+            
+
+            <li class="nav-item">
+            <a a href="#" class="nav-link">Welcome, Admin</a>
+            </li>
+            <li class="nav-item">
+            <a href="{% url 'logout' %}" class="nav-link">Log Out</a>
+            </li>
+        </ul>
+        </div>
+    </nav>
+
+    </header>
+    <!--Main Navigation-->
+
+    
+    <section id="breadcrumb">
+        <div class="container">
+        <ol class="breadcrumb">
+            <li class="active">Dashboard</li>
+        </ol>
+        </div>
+    </section>
+    
+    <section id= "main">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <a href="{% url 'dashboard' %}" class="list-group-item ">Dashboard</a>
+                        <a href="{% url 'create_exam' %}" class="list-group-item ">Create Exam</a>
+                        <a href="{% url 'enroll' %}" class="list-group-item ">Enroll</a>
+                        <a href="{% url 'enrolled' %}" class="list-group-item ">View Students</a>
+                        <a href="#" class="list-group-item active"> Responses</a>
+                    </div>
+                    
+                </div>
+                <div class="col-md-9">
+                {% if responses %}
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Exam Name</th>
+                            <th scope="col">Exam Code</th>
+                            <th scope="col">Response Number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for response in responses %}
+                            <tr>
+                            <th scope="row"><a href="">1</a></th>
+                            <td><a href="">Military Intelligence</a></td>
+                            <td>ML101</td>
+                            <td>30</td>
+                            </tr>
+                        {% endfor %}
+                            
+                            <!--<tr>
+                            <th scope="row"><a href="">2</a></th>
+                            <td><a href="">Obstacle Crossing</a></td>
+                            <td>OC101</td>
+                            <td>45</td>
+                            </tr>
+                            <tr>
+                            <th scope="row"><a href="">3</a></th>
+                            <td ><a href="">Arms Handling</a></td>
+                            <td>AH101</td>
+                            <td>20</td>
+                            </tr>-->
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No Exam has been submitted!</p><br>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+{% endblock  %}

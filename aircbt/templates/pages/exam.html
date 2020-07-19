@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container">
+        <form action="{% url 'exam' course%}" method="POST" id="finish"%} >{% csrf_token %}
+                    <input type='hidden' name="finish" value="finish">
+                    <input name="question_type" type="hidden" class="form-check-input" value= "{{question.question_type}}">
+                    
+                    <input name="question_code" type="hidden" class="form-check-input" value= "{{question.id}}">
+                    <input name="exam_name" type="hidden" class="form-check-input" value= "{{question.question_exam_name}}">
+                                                
+                </form>
+                
+
+        <form action="{% url 'exam' course%}" method="POST" id="upload">
+            {% csrf_token %}
+            {% if questions %}
+                
+                {% for question in questions %}
+                    {% ifequal question.question_type "objective" %}
+                    
+                        <input name="question_code" type="hidden" class="form-check-input" value= "{{question.id}}">
+                        <input name="question_type" type="hidden" class="form-check-input" value= "{{question.question_type}}">
+                        <input name="exam_name" type="hidden" class="form-check-input" value= "{{question.question_exam_name}}">
+                        <input type='hidden' name="finish" value="continue"></input>
+                        
+                        <p>{{question.question_text}}</p>
+                        {% if options %}
+                                        
+                            {% for option in options %}
+                                {% if option.option_question_text == question.question_text %}
+                                    <div class="custom-control custom-radio">
+                                        
+                                        
+                                        <input name="options" type="radio" class="form-check-input" id="a_option" value= "{{option.option_text}}">
+                                        <label class="form-check-label" for="a_option" >{{option.option_id}}<span>. </span>{{option.option_text}}</label>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        
+                        {% endif %}
+                        <!--if question is essay-->
+                    {% else %}
+
+                            <p>{{question.question_text}}</p>
+
+                            <input type='hidden' name="finish" value="continue"></input>
+                            <input name="exam_name" type="hidden" class="form-check-input" value= "{{question.question_exam_name}}">
+                            <input name="question_code" type="hidden" class="form-check-input" value= "{{question.id}}">
+                            <input name="question_type" type="hidden" class="form-check-input" value= "{{question.question_type}}">
+                            <label for="text">Answer</label>
+                            <textarea name="essay_text" class="form-control" id="text" placeholder="Answer" rows="4"></textarea>
+                        
+                    {% endifequal %}
+                {% endfor %}
+            {% else %}
+                Exam yet online
+            {% endif %}
+            
+        </form>
+            <!--Pagination-->
+            {% if questions.has_other_pages %}
+                <div class="container pagination" data-aos="fade-in" data-aos-delay="50">
+                    <div class="row ">
+
+                        <!--NEXT-->
+                        {% if questions.has_previous %}
+                        <span class="page-item">
+                            <a class='page-link' href='?page={{questions.previous_page_number}}'><button onclick="submit_form_byid()" type="submit" class="btn btn-sm btn-success">BACK</button><i class="fas fa-angle-double-left"></i></a>
+                        </span>
+                        {% endif %}
+                        
+                        <!--BACK-->
+                        {% if questions.has_next %}
+                        <span class="page-item ">
+                            <a class='page-link' href='?page={{questions.next_page_number}}'><button onclick="submit_form_byid()" type="submit" class="btn btn-sm btn-success">NEXT</button><i class="fas fa-angle-double-right"></i></a>
+                        </span>
+                        {% else %}
+                        <span class="page-item ">
+                            <a class='page-link' href='{% url 'home' %}'><button onclick="finish_form_byid()" type="submit" class="btn btn-sm btn-danger">FINISH</button><i class="fas fa-angle-double-right"></i></a>
+                        </span>
+                        {% endif %}
+                        
+                    </div>
+                </div>
+            {% endif %}
+
+    </div>
+
+
+{% endblock  %}
+

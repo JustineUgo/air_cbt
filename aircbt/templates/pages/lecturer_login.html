@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}| Login{% endblock  %}
+{% block content %}
+
+<!-- Begin your project here-->
+
+    <div class="container">
+    
+        <div class="align-content-center">
+            <!-- form signin -->
+            <form class="landing form col-md-10 border border-light p-5" action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+
+                <div class="jumbotron row text-center">
+                    <img src="/static/img/logo.jpg" class="img-circle"  width="100" height="100">
+                    <p  class="h4 text-white text-center">Administrator Portal   |   SIGN IN</p>
+                </div>
+                
+                <!-- username -->
+                <div class="form-group">
+                    <label for="examiner_name">Fullname</label>
+                    <input type="text" class="form-control" id="username" name="examiner_name" placeholder="Fullname">
+                </div>
+
+                <!-- password -->
+                <label for="password">Password</label>
+                <input type="password" class="form-control mb-4" id="password" name="password" placeholder="Password">
+
+                
+
+                <!-- Sign in button -->
+                <button class="btn btn-info btn-block mb-4" type="submit">Sign in</button>
+
+                <!-- Register -->
+                <p>Haven't registered?
+                    <a href="{% url 'register' %}">Register</a>
+                </p>
+
+            </form>
+            <!-- form signin -->
+        </div>
+
+    
+    </div>
+  <!-- End your project here-->
+
+{% endblock  %}

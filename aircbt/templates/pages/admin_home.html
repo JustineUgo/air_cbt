@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+        <form action="{% url 'admin_home'%}" method="POST">
+            {% csrf_token %}
+            <p>Upload Exam</p>
+            <div class="form-group">
+                <label for="question_exam_name">Exam Name</label>
+                
+                <select name="question_exam_name" class="form-control" id="question_exam_name">
+                    {% for exam in exams %}
+                        <option value="{{exam.exam_name}}">{{exam.exam_name}}</option>
+                    {% endfor %}
+                </select>
+
+            </div>
+            <div class="form-group">
+                <label for="question_code">Question Code</label>
+                <input name="question_code" type="text" class="form-control" id="question_code" placeholder="Question Code" >
+
+            </div>
+            <div class="form-group">
+                <label for="question_text">Question Text</label>
+                <textarea name="question_text" class="form-control" id="question_text" placeholder="Question Text" rows="4"></textarea>
+
+            </div>
+            <div class="form-group">
+                <label for="date_created">Date Created</label>
+                <input name="date_created" type="datetime-local" class="form-control" id="date_created" placeholder="Date Created" >
+
+            </div>
+            <div class="form-group">
+                <label for="question_type">Question Type</label>
+                <select name="question_type" class="form-control" id="question_type">
+                    <option>Objective</option>
+                    <option>Essay</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="options">Options</label>
+                <input name="option1" class="form-control" id="options" placeholder="First Option" ></input>
+                <input name="option2" class="form-control" id="options" placeholder="Second Option" ></input>
+                <input name="option3" class="form-control" id="options" placeholder="Thrid Option" ></input>
+                <input name="option4" class="form-control" id="options" placeholder="Fourth Option" ></input>
+            </div>
+            <div class="form-check">
+                <input name="option_one" type="radio" class="form-check-input" id="option_one">
+                <label class="form-check-label" for="option_one" >First Option</label>
+                
+                <input name="option_two" type="radio" class="form-check-input" id="option_one">
+                <label class="form-check-label" for="option_two" >Second Option</label>
+                
+                <input name="option_three" type="radio" class="form-check-input" id="option_one">
+                <label class="form-check-label" for="option_three" >Thrid Option</label>
+
+                <input name="option_four" type="radio" class="form-check-input" id="option_one">
+                <label class="form-check-label" for="option_four" >Fourth Option</label>
+                
+            </div>
+
+            <button type="submit" class="btn btn-sm btn-primary mb-2">Upload</button>
+        </form>
+    </div>
+
+
+{% endblock  %}
+

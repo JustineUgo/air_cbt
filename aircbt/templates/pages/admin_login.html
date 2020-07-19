@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container">
+        <form action="{% url 'admin_login'%}" method="POST">
+            {% csrf_token %}
+            <p>Staff Information</p>
+            <div class="form-group">
+                <label for="name">Fullname</label>
+                <input name="name" type="text" class="form-control" id="name" placeholder="Fullname" >
+
+            </div>
+            <div class="form-group">
+                <label for="examiner_code">Examiner Code</label>
+                <input name="examiner_code" type="text" class="form-control" id="examiner_code" placeholder="Password" >
+
+            </div>
+            <div class="form-group">
+                <label for="exam_code">Exam Code</label>
+                <input name="exam_code" type="text" class="form-control" id="exam_code" placeholder="Exam Code" >
+
+            </div>
+            <div class="form-group">
+                <label for="exam_name">Exam Name</label>
+                <input name="exam_name" type="text" class="form-control" id="exam_name" placeholder="Exam Name" >
+
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary mb-2">Verify</button>
+        </form>
+    </div>
+
+{% endblock  %}
+
+

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}| Responses{% endblock  %}
+{% block content %}
+
+<!-- Begin your project here-->
+
+    <!--Main Navigation-->
+    <header>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark blue scrolling-navbar">
+        <a class="navbar-brand" href="#"><img src="/static/img/logo.jpg" class="img-circle"  width="40" height="40"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            <a class="nav-link" href="{% url 'dashboard' %}">Air Force War College <span class="sr-only">(current)</span></a>
+            </li>
+            
+        </ul>
+        <ul class="navbar-nav nav-flex-icons">
+            
+
+            <li class="nav-item">
+            <a a href="#" class="nav-link">Welcome, Admin</a>
+            </li>
+            <li class="nav-item">
+            <a href="{% url 'logout' %}" class="nav-link">Log Out</a>
+            </li>
+        </ul>
+        </div>
+    </nav>
+
+    </header>
+    <!--Main Navigation-->
+
+    
+    <section id="breadcrumb">
+        <div class="container">
+        <ol class="breadcrumb">
+            <li class="active">Dashboard</li>
+        </ol>
+        </div>
+    </section>
+    
+    <section id= "main">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item ">Dashboard</a>
+                        <a href="#" class="list-group-item ">Create Exam</a>
+                        <a href="#" class="list-group-item ">Enroll</a>
+                        <a href="#" class="list-group-item ">View Students</a>
+                        <a href="#" class="list-group-item active"> Responses</a>
+                    </div>
+                    
+                </div>
+                <div class="col-md-9">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Student Name</th>
+                            <th scope="col">Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <th scope="row"><a href="">1</a></th>
+                            <td><a href="">Ogaraku Justine</a></td>
+                            <td>50</td>
+                            </tr>
+                            <tr>
+                            <th scope="row"><a href="">2</a></th>
+                            <td><a href="">Shalom Akos</a></td>
+                            <td>30</td>
+                            </tr>
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+  <!-- End your project here-->
+
+
+{% endblock  %}
+

@@ -1,0 +1,47 @@
+.jumbotron{
+    background-color: steelblue;
+    padding-left: 20px;
+    padding-top: 10px;
+    height: 130px;
+}
+
+form p{
+    margin-top: 40px;
+}
+
+.img{
+    border-radius: 50px;
+}
+
+form.landing{
+    margin-top: 50px;
+}
+
+
+.card{
+    margin-bottom: 20px;
+}
+
+.btn{
+    border-radius: 50px;
+}
+
+.breadcrumb{
+    margin-top: 100px;
+    background: #cccccc;
+    color:#333333;
+}
+
+.breadcrumb a{
+    color:#333333;
+}
+
+
+.form{
+    
+    margin-bottom: 100px;
+
+}
+
+
+
